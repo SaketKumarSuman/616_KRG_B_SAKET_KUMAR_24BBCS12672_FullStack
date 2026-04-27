@@ -1,0 +1,36 @@
+@autowired
+------------
+@Service
+class StudentService {
+   public String getData() {
+      return "Student Data";
+   }
+}
+
+@RestController
+class MyController {
+
+   @Autowired
+   StudentService service;
+
+   @GetMapping("/data")
+   public String getData() {
+      return service.getData();
+   }
+}
+
+@RequestBody
+---------------
+class Student {
+   public String name;
+   public int age;
+}
+
+@RestController
+class MyController {
+
+   @PostMapping("/student")
+   public String addStudent(@RequestBody Student s) {
+      return "Name: " + s.name + ", Age: " + s.age;
+   }
+}
